@@ -1,0 +1,37 @@
+﻿@model QuickResume.Models.Language
+
+@{
+    ViewData["Title"] = "Edit Language";
+}
+
+<div class="container">
+    <h2>Edit Language</h2>
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div>
+            <label asp-for="Name"></label>
+            <input asp-for="Name"  />
+            <span asp-validation-for="Name"></span>
+        </div>
+
+        <div>
+            <label asp-for="Proficiency"></label>
+            <select asp-for="Proficiency" class="form-control">
+                <option value="">Select Proficiency</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Fluent">Fluent</option>
+                <option value="Native">Native</option>
+            </select>
+            <span asp-validation-for="Proficiency"></span>
+        </div>
+
+        <<div class="btn-container">
+            <button type="submit" class="edit-btn">Update Language</button>
+            <a asp-action="Index" class="cancel-btn">Cancel</a>
+        </div>
+
+    </form>
+</div>

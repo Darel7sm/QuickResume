@@ -1,0 +1,35 @@
+﻿@model QuickResume.Models.Language
+
+@{
+    ViewData["Title"] = "Add Language";
+}
+
+<div class="container">
+    <h2>Add Language</h2>
+
+    <form asp-action="Create" method="post">
+        <div>
+            <label asp-for="Name"></label>
+            <input asp-for="Name" />
+            <span asp-validation-for="Name"></span>
+        </div>
+
+        <div>
+            <label asp-for="Proficiency"></label>
+            <select asp-for="Proficiency" >
+                <option value="">Select Proficiency</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Fluent">Fluent</option>
+                <option value="Native">Native</option>
+            </select>
+            <span asp-validation-for="Proficiency"></span>
+        </div>
+
+        <div class="btn-container">
+            <button type="submit" class="create-btn">Add Language</button>
+        </div>
+
+    </form>
+</div>
+

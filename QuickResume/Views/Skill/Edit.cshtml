@@ -1,0 +1,25 @@
+﻿@model QuickResume.Models.Skill
+
+@{
+    ViewData["Title"] = "Edit Skill";
+}
+
+<div class="container">
+    <h2>Edit Skill</h2>
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div >
+            <label asp-for="Name"></label>
+            <input asp-for="Name"  />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="btn-container">
+            <button type="submit" class="edit-btn">Save Changes</button>
+            <a asp-action="Index" class="cancel-btn">Cancel</a>
+        </div>
+
+    </form>
+</div>

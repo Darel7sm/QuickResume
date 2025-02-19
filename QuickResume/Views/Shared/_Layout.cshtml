@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/QuickResume.styles.css" asp-append-version="true" />
+</head>
+<body >
+    <header>
+        <nav class="nav-container">
+            <div class="top-nav" style="height: 5px;">
+                <div class="logo">
+                    <a asp-area="" asp-controller="QuickResume" asp-action="Index"  >
+                        <img src="~/images/logo.png" alt="QuickResume" style="width: 200px;" />
+                    </a>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+                    <div class="account">
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-nav">
+                <ul>
+                    <li><a asp-area="" asp-controller="Profile" asp-action="Index">Profile</a></li>
+                    <li><a asp-area="" asp-controller="Summary" asp-action="Index">Summary</a></li>
+                    <li><a asp-area="" asp-controller="Education" asp-action="Index">Education</a></li>
+                    <li><a asp-area="" asp-controller="Experience" asp-action="Index">Experience</a></li>
+                    <li><a asp-area="" asp-controller="Skill" asp-action="Index">Skills</a></li>
+                    <li><a asp-area="" asp-controller="Language" asp-action="Index">Languages</a></li>
+                    <li><a asp-area="" asp-controller="Social" asp-action="Index">Socials</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main">
+        <main role="main" >
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <div>
+            &copy; @DateTime.Now.Year - QuickResume
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

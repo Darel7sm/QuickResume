@@ -1,0 +1,34 @@
+﻿@model QuickResume.Models.Social
+
+@{
+    ViewData["Title"] = "Add Social";
+}
+
+<div class="container">
+    <h2>Add Social</h2>
+
+    <form asp-action="Create" method="post">
+        <div class="form-group">
+            <label asp-for="PersonalWebsite"></label>
+            <input asp-for="PersonalWebsite"  type="url" placeholder="https://yourwebsite.com" />
+            <span asp-validation-for="PersonalWebsite" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="GitHub"></label>
+            <input asp-for="GitHub"  type="url" placeholder="https://github.com/yourusername" />
+            <span asp-validation-for="GitHub" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="LinkedIn"></label>
+            <input asp-for="LinkedIn"  type="url" placeholder="https://linkedin.com/in/yourprofile" />
+            <span asp-validation-for="LinkedIn" class="text-danger"></span>
+        </div>
+
+        <div class="btn-container">
+            <button type="submit" class="create-btn">Add Social</button>
+        </div>
+
+    </form>
+</div>

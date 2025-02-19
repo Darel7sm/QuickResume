@@ -1,0 +1,43 @@
+﻿@model QuickResume.Models.Profile
+
+@{
+    ViewData["Title"] = "Profile Details";
+}
+
+<div class="container">
+
+    <h2>My Profile</h2>
+
+    <div class="profile-details">
+        <div>
+            <p><strong>Full Name:</strong> @Model.FullName</p>
+            <p><strong>Date of Birth:</strong> @Model.DateofBirth.ToString("yyyy/MM/dd")</p>
+            <p><strong>Gender:</strong> @Model.Gender</p>
+            <p><strong>Email:</strong> @Model.Email</p>
+            <p><strong>Phone:</strong> @Model.PhoneNumber</p>
+        </div>
+        <div style="display: flex; align-items: start;">
+            <p><strong>Address:</strong></p>
+            <div style="margin-left: 5px;">
+                <p>@Model.Street</p>
+                <p>@Model.City</p>
+                <p>@Model.ZipCode</p>
+                <p>@Model.Province,&nbsp;@Model.Country</p>
+            </div>
+        </div>
+
+
+
+        <div class="btn-container">
+            <button class="edit-btn">
+                <a asp-action="Edit">Edit Profile</a>
+            </button>
+            <button class="delete-btn">
+                <a asp-controller="Profile" asp-action="Delete" class="btn btn-danger">Delete Profile</a>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,56 @@
+﻿@model QuickResume.Models.Social
+
+@{
+    ViewData["Title"] = "Social";
+}
+
+<div class="container">
+    <h2>Social</h2>
+
+    <div>
+        <p>
+            <strong>Personal Website:</strong>
+            @if (!string.IsNullOrWhiteSpace(Model.PersonalWebsite))
+            {
+                <a href="@Model.PersonalWebsite" target="_blank">Visit Portfolio</a>
+            }
+            else
+            {
+                <span class="text-muted">Not Provided</span>
+            }
+        </p>
+
+        <p>
+            <strong>LinkedIn:</strong>
+            @if (!string.IsNullOrWhiteSpace(Model.LinkedIn))
+            {
+                <a href="@Model.LinkedIn" target="_blank">View Profile</a>
+            }
+            else
+            {
+                <span class="text-muted">Not Provided</span>
+            }
+        </p>
+
+        <p>
+            <strong>GitHub:</strong>
+            @if (!string.IsNullOrWhiteSpace(Model.GitHub))
+            {
+                <a href="@Model.GitHub" target="_blank">View Repository</a>
+            }
+            else
+            {
+                <span class="text-muted">Not Provided</span>
+            }
+        </p>
+    </div>
+
+    <div class="btn-container">
+        <button class="edit-btn">
+            <a asp-controller="Social" asp-action="Edit">Edit</a>
+        </button>
+        <button class="delete-btn">
+            <a asp-controller="Social" asp-action="Delete">Delete</a>
+        </button>
+    </div>
+</div>

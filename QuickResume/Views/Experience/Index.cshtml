@@ -1,0 +1,54 @@
+﻿@model List<QuickResume.Models.Experience>
+
+@{
+    ViewData["Title"] = "My Experiences";
+}
+
+<div class="container-table" style="max-width: none;">
+    <h2>My Experiences</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Job Title</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Job Duties</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var experience in Model)
+            {
+                <tr>
+                    <td>@experience.CompanyName</td>
+                    <td>@experience.JobTitle</td>
+                    <td>@experience.StartDate.ToString("yyyy/MM/dd")</td>
+                    <td>@(experience.IsCurrentlyWorking ? "Currently Working" : experience.EndDate?.ToString("yyyy/MM/dd"))</td>
+                    <td>@experience.City</td>
+                    <td>@experience.State</td>
+                    <td>@experience.JobDuty</td>
+                    <td>
+                        <div class="btn-table-container">
+                            <button class="edit-btn">
+                                <a asp-action="Edit" asp-route-id="@experience.Id">Edit</a>
+                            </button>
+                            <button class="delete-btn">
+                                <a asp-action="Delete" asp-route-id="@experience.Id">Delete</a>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="btn-container">
+        <button class="create-btn">
+            <a asp-action="Create">Add New Experience</a>
+        </button>
+    </div>
+</div>

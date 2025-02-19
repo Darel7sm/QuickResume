@@ -1,0 +1,260 @@
+﻿@model QuickResume.Models.ResumeViewModel
+@{
+    ViewData["Title"] = "QuickResume";
+}
+
+<div class="cv-download-container">
+    <a href="@Url.Action("ExportPdf", "QuickResume")" class="download-btn">
+        Download Resume as PDF
+    </a>
+</div>
+
+<div id="multiStepForm">
+    @* Profile *@
+    <div class="step" id="step1">
+        <div class="container">
+
+            <h2>My Profile</h2>
+
+            <div class="profile-details">
+                <div>
+                    <p><strong>Full Name:</strong> @Model.Profile.FullName</p>
+                    <p><strong>Date of Birth:</strong> @Model.Profile.DateofBirth.ToString("yyyy/MM/dd")</p>
+                    <p><strong>Gender:</strong> @Model.Profile.Gender</p>
+                    <p><strong>Email:</strong> @Model.Profile.Email</p>
+                    <p><strong>Phone:</strong> @Model.Profile.PhoneNumber</p>
+                </div>
+                <div style="display: flex; align-items: start;">
+                    <p><strong>Address:</strong></p>
+                    <div style="margin-left: 5px;">
+                        <p>@Model.Profile.Street</p>
+                        <p>@Model.Profile.City</p>
+                        <p>@Model.Profile.ZipCode</p>
+                        <p>@Model.Profile.Province,&nbsp;@Model.Profile.Country</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="next-prev-btn">
+            <button type="button" onclick="nextStep(2)">Next</button>
+        </div>
+    </div>
+
+
+    @* Professional Summary *@
+    <div class="step" id="step2" style="display: none;">
+        <div class="container">
+            <h2>Professional Summary</h2>
+
+            <div class="profile-details">
+                <p><strong>Position Applying For:</strong> @Model.Summary.Position</p>
+                <div style="display: flex; align-items: start;">
+                    <p style="width: 100%;"><strong style="width: 100%; text-wrap: nowrap;"> Professional Summary:</strong></p>
+                    <div style="margin-left: 20px;">
+                        <p>@Model.Summary.Description</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="next-prev-btn">
+            <button type="button" onclick="prevStep(1)">Back</button>
+            <button type="button" onclick="nextStep(3)">Next</button>
+        </div>
+    </div>
+
+
+    @* Education *@
+    <div class="step" id="step3" style="display: none;">
+        <div class="container-table">
+            <h2>My Education</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Institution</th>
+                        <th>Degree</th>
+                        <th>Field of Study</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var education in Model.EducationList)
+                    {
+                        <tr>
+                            <td>@education.Institution</td>
+                            <td>@education.Degree</td>
+                            <td>@education.FieldOfStudy</td>
+                            <td>@education.StartDate.ToString("yyyy/MM/dd")</td>
+                            <td>@education.EndDate.ToString("yyyy/MM/dd")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="next-prev-btn">
+            <button type="button" onclick="prevStep(2)">Back</button>
+            <button type="button" onclick="nextStep(4)">Next</button>
+        </div>
+    </div>
+
+    @* Experience *@
+    <div class="step" id="step4" style="display: none;">
+
+        <div class="container-table">
+            <h2>My Experiences</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Job Title</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var experience in Model.ExperienceList)
+                    {
+                        <tr>
+                            <td>@experience.CompanyName</td>
+                            <td>@experience.JobTitle</td>
+                            <td>@experience.StartDate.ToString("yyyy/MM/dd")</td>
+                            <td>@(experience.IsCurrentlyWorking ? "Currently Working" : experience.EndDate?.ToString("yyyy/MM/dd"))</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="next-prev-btn">
+            <button type="button" onclick="prevStep(3)">Back</button>
+            <button type="button" onclick="nextStep(5)">Next</button>
+        </div>
+    </div>
+
+    @* Skills *@
+    <div class="step" id="step5" style="display: none;">
+        <div class="container-table">
+            <h2>My Skills</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Skill Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var skill in Model.Skills)
+                    {
+                        <tr>
+                            <td>@skill.Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="next-prev-btn">
+            <button type="button" onclick="prevStep(4)">Back</button>
+            <button type="button" onclick="nextStep(6)">Next</button>
+        </div>
+    </div>
+    
+
+    @* Language *@
+    <div class="step" id="step6" style="display: none;">
+        <div class="container-table">
+            <h2>My Languages</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Language Name</th>
+                        <th>Proficiency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var language in Model.Languages)
+                    {
+                        <tr>
+                            <td>@language.Name</td>
+                            <td>@language.Proficiency</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="next-prev-btn">
+            <button type="button" onclick="prevStep(5)">Back</button>
+            <button type="button" onclick="nextStep(7)">Next</button>
+        </div>
+    </div>
+
+    @* Socials *@
+    <div class="step" id="step7" style="display: none;">
+        <div class="container">
+            <h2>Social</h2>
+
+            <div>
+                <p>
+                    <strong>Personal Website:</strong>
+                    @if (!string.IsNullOrWhiteSpace(Model.Socials.PersonalWebsite))
+                    {
+                        <a href="@Model.Socials.PersonalWebsite" target="_blank">Visit Portfolio</a>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Not Provided</span>
+                    }
+                </p>
+
+                <p>
+                    <strong>LinkedIn:</strong>
+                    @if (!string.IsNullOrWhiteSpace(Model.Socials.LinkedIn))
+                    {
+                        <a href="@Model.Socials.LinkedIn" target="_blank">View Profile</a>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Not Provided</span>
+                    }
+                </p>
+
+                <p>
+                    <strong>GitHub:</strong>
+                    @if (!string.IsNullOrWhiteSpace(Model.Socials.GitHub))
+                    {
+                        <a href="@Model.Socials.GitHub" target="_blank">View Repository</a>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Not Provided</span>
+                    }
+                </p>
+            </div>
+        </div>
+
+        <div class="next-prev-btn">
+            <button type="button" onclick="prevStep(6)">Back</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function nextStep(step) {
+        document.querySelectorAll(".step").forEach(el => el.style.display = "none");
+        document.getElementById("step" + step).style.display = "block";
+    }
+
+    function prevStep(step) {
+        document.querySelectorAll(".step").forEach(el => el.style.display = "none");
+        document.getElementById("step" + step).style.display = "block";
+    }
+</script>
+

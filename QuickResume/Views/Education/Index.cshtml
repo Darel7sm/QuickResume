@@ -1,0 +1,51 @@
+﻿@model List<QuickResume.Models.Education>
+
+@{
+    ViewData["Title"] = "My Education";
+}
+
+<div class="container-table">
+    <h2>My Education</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Institution</th>
+                <th>Degree</th>
+                <th>Field of Study</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var education in Model)
+            {
+                <tr>
+                    <td>@education.Institution</td>
+                    <td>@education.Degree</td>
+                    <td>@education.FieldOfStudy</td>
+                    <td>@education.StartDate.ToString("yyyy/MM/dd")</td>
+                    <td>@education.EndDate.ToString("yyyy/MM/dd")</td>
+                    <td>
+                        <div class="btn-table-container">
+                            <button class="edit-btn">
+                                <a asp-action="Edit" asp-route-id="@education.Id">Edit</a>
+                            </button>
+                            <button class="delete-btn">
+                                <a asp-action="Delete" asp-route-id="@education.Id">Delete</a>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="btn-container">
+        <button class="create-btn">
+            <a asp-action="Create">Add New Education</a>
+        </button>
+    </div>
+</div>
+

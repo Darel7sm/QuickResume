@@ -1,0 +1,42 @@
+﻿@model List<QuickResume.Models.Skill>
+
+@{
+    ViewData["Title"] = "My Skills";
+}
+
+<div class="container-table">
+    <h2>My Skills</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Skill Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var skill in Model)
+            {
+                <tr>
+                    <td>@skill.Name</td>
+                    <td>
+                        <div class="btn-table-container">
+                            <button class="edit-btn">
+                                <a asp-action="Edit" asp-route-id="@skill.Id">Edit</a>
+                            </button>
+                            <button class="delete-btn">
+                                <a asp-action="Delete" asp-route-id="@skill.Id">Delete</a>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="btn-container">
+        <button class="create-btn">
+            <a asp-action="Create">Add New Skill</a>
+        </button>
+    </div>
+</div>

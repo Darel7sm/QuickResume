@@ -1,0 +1,28 @@
+﻿@model QuickResume.Models.Summary
+
+@{
+    ViewData["Title"] = "Summary";
+}
+
+<div class="container">
+    <h2>Professional Summary</h2>
+
+    <div class="profile-details">
+        <p><strong>Position Applying For:</strong> @Model.Position</p>
+        <div style="display: flex; align-items: start;">
+            <p style="width: 100%;"><strong style="width: 100%; text-wrap: nowrap;"> Professional Summary:</strong></p>
+            <div style="margin-left: 20px;">
+                <p>@Model.Description</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="btn-container">
+        <button class="edit-btn">
+            <a asp-controller="Summary" asp-action="Edit">Edit</a>
+        </button>
+        <button class="delete-btn">
+            <a asp-controller="Summary" asp-action="Delete">Delete</a>
+        </button>
+    </div>
+</div>

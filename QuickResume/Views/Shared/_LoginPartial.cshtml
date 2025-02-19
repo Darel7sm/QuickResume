@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<QuickResume.Data.QuickResumeUser> SignInManager
+@inject UserManager<QuickResume.Data.QuickResumeUser> UserManager
+
+<ul class="nav-identity">
+@if (User.Identity.IsAuthenticated)
+{
+    <li >
+        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "QuickResume", new { area = "" })">
+                <button class="logout-btn-link" type="submit" style="background-color: red; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;cursor: pointer;">Logout</button>
+        </form>
+    </li>
+}
+else
+{
+    <div class="btn-container">
+        <button class="create-btn">
+            <a asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </button>
+        <button class="create-btn">
+            <a asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </button>
+    </div>
+}
+</ul>
